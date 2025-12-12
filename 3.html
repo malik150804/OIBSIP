@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temperature Converter</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #eef2f7;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .container {
+        background: #fff;
+        width: 330px;
+        margin-top: 40px;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 10px 18px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    label {
+        color: #666;
+        font-size: 14px;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 6px;
+        margin-bottom: 18px;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        outline: none;
+        font-size: 17px;
+    }
+
+    #result {
+        font-size: 20px;
+        font-weight: 500;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        color: #111;
+    }
+
+    button {
+        width: 100%;
+        background: #0376ff;
+        color: white;
+        padding: 14px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: #005fe0;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Temperature Converter</h2>
+
+    <label>Degrees</label>
+    <input type="number" id="inputTemp" placeholder="Enter value">
+
+    <label>Type</label>
+    <select id="tempType">
+        <option value="fahrenheit">Fahrenheit</option>
+        <option value="celsius">Celsius</option>
+        <option value="kelvin">Kelvin</option>
+    </select>
+
+    <label>Result</label>
+    <div id="result">--</div>
+
+    <button onclick="convertTemp()">Convert</button>
+</div>
+
+<script>
+function convertTemp() {
+    let temp = document.getElementById("inputTemp").value;
+    let type = document.getElementById("tempType").value;
+
+    if (temp === "") {
+        document.getElementById("result").innerHTML = "Please enter a number!";
+        return;
+    }
+
+    temp = parseFloat(temp);
+    let output = "";
+
+    if (type === "fahrenheit") {
+        output = ((temp - 32) * 5/9).toFixed(4) + " °C";
+    }
+    else if (type === "celsius") {
+        output = ((temp * 9/5) + 32).toFixed(4) + " °F";
+    }
+    else if (type === "kelvin") {
+        output = (temp - 273.15).toFixed(4) + " °C";
+    }
+
+    document.getElementById("result").innerHTML = output;
+}
+</script>
+
+</body>
+</html>

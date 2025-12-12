@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mohammad Shoaib Malik — Portfolio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #071027;
+      --panel: rgba(255,255,255,0.03);
+      --muted: #9fb2c3;
+      --text: #eaf6fb;
+      --accent: #06b6d4;
+      --accent-2: #7c3aed;
+      --glass: rgba(255,255,255,0.04);
+      --radius: 14px;
+      --nav-h: 72px;
+    }
+
+    /* Light theme variables (will be toggled by [data-theme="light"]) */
+    :root[data-theme="light"]{
+      --bg: #f6fbff;
+      --panel: rgba(10,14,20,0.03);
+      --muted: #4b5563;
+      --text: #071423;
+      --accent: #0ea5b7;
+      --accent-2: #6d28d9;
+      --glass: rgba(255,255,255,0.7);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:
+        radial-gradient(1000px 500px at 10% 10%, rgba(7,18,35,0.45), transparent 6%),
+        linear-gradient(180deg,var(--bg), #061021);
+      color:var(--text);
+      font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      min-height:100vh;
+      padding:0;
+      line-height:1.45;
+    }
+
+    /* NAVBAR */
+    .nav-wrap{
+      position:sticky;
+      top:0;
+      z-index:9999;
+      backdrop-filter: blur(6px) saturate(120%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+      border-bottom: 1px solid rgba(255,255,255,0.02);
+      box-shadow: 0 6px 26px rgba(2,6,23,0.35);
+    }
+    nav.container {
+      max-width:1100px;
+      margin:0 auto;
+      height:var(--nav-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 22px;
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center; text-decoration:none; color:var(--text);
+      font-weight:700; font-size:16px;
+    }
+    .brand .logo {
+      width:48px; height:48px; border-radius:10px; overflow:hidden; display:inline-block;
+      border:1px solid rgba(255,255,255,0.04);
+      background:linear-gradient(160deg,var(--accent),var(--accent-2));
+      display:flex; align-items:center; justify-content:center; color:white;
+    }
+
+    .nav-links{
+      display:flex; gap:8px; align-items:center;
+    }
+    .nav-links a{
+      color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:8px; font-size:14px;
+      transition: all .18s ease;
+    }
+    .nav-links a.active{
+      color:var(--text);
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      box-shadow: 0 8px 22px rgba(7,20,30,0.45);
+    }
+    .nav-links a:hover{transform:translateY(-3px)}
+
+    /* mobile menu button */
+    .mobile-toggle{
+      display:none; width:44px; height:44px; border-radius:10px; align-items:center; justify-content:center;
+      background:transparent; border:1px solid rgba(255,255,255,0.03); color:var(--text);
+    }
+
+    /* page layout */
+    .page{
+      max-width:1100px;
+      margin:20px auto 80px;
+      padding:28px;
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap:28px;
+      align-items:start;
+    }
+
+    /* SIDEBAR CARD */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow: 0 10px 40px rgba(2,6,23,0.5);
+      border: 1px solid rgba(255,255,255,0.03);
+      position:relative;
+      overflow:hidden;
+    }
+    .photo{
+      width:100%;
+      border-radius:12px;
+      overflow:hidden;
+      height:380px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--glass);
+      margin-bottom:14px;
+      transition: transform .9s cubic-bezier(.2,.9,.2,1);
+    }
+    .photo img{ width:100%;height:100%;object-fit:cover; display:block; transition: transform .9s; }
+    .photo:hover img{ transform: scale(1.04) rotate(-0.6deg) }
+
+    h1{font-size:20px;margin-bottom:6px}
+    .subtitle{color:var(--muted);font-size:13px;margin-bottom:12px}
+
+    .contact-list{font-size:14px;color:#d7e9f3;}
+    .contact-item{margin:8px 0; display:flex; gap:8px; align-items:center; color:var(--muted)}
+    .chip{
+      display:inline-block;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:13px;
+      margin:6px 6px 0 0;
+      color:var(--text);
+      border:1px solid rgba(255,255,255,0.025);
+      transition: transform .18s;
+    }
+
+    /* MAIN CONTENT */
+    .main{
+      padding:18px;
+      border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.008), rgba(255,255,255,0.004));
+      border: 1px solid rgba(255,255,255,0.02);
+      box-shadow: 0 10px 40px rgba(2,6,23,0.45);
+    }
+
+    .hero{
+      display:flex; gap:22px; align-items:center; margin-bottom:18px;
+      flex-wrap:wrap;
+    }
+    .hero-left{
+      flex:1 1 420px;
+    }
+    .hero-right{
+      width:220px; min-width:180px;
+    }
+    .headline{ font-size:28px; font-weight:700; margin-bottom:8px; color:var(--text) }
+    .subhead{ color:var(--muted); font-size:15px; margin-bottom:14px }
+
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px;
+      text-decoration:none; color:var(--bg); background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      font-weight:700; font-size:14px; box-shadow: 0 8px 26px rgba(7,20,30,0.45);
+    }
+    .btn.ghost{ background:transparent; color:var(--text); border:1px solid rgba(255,255,255,0.06); box-shadow:none; }
+
+    /* sections */
+    .section{
+      margin-bottom:20px; padding:12px 0;
+      position:relative;
+    }
+    .section h2{
+      font-size:16px; margin-bottom:12px; color:var(--text);
+      display:flex; align-items:center; gap:10px;
+    }
+    .card-panel{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    /* college box */
+    .college-box{ background:rgba(255,255,255,0.03); padding:14px; border-radius:10px; color:var(--text); font-size:14px; }
+
+    /* projects grid */
+    .projects-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; }
+    .project-card{
+      padding:12px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.02); transition: transform .25s, box-shadow .25s;
+    }
+    .project-card:hover{ transform: translateY(-8px); box-shadow: 0 18px 40px rgba(2,6,23,0.45); }
+    .project-card h3{ margin-bottom:8px; font-size:15px }
+    .project-card p{ color:var(--muted); font-size:14px }
+
+    /* skills */
+    .skills{ display:flex; gap:10px; flex-wrap:wrap }
+    .skill-pill{ padding:8px 12px; border-radius:999px; background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); font-size:13px; color:var(--text); border:1px solid rgba(255,255,255,0.02) }
+
+    /* contact form (simple) */
+    .contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    input, textarea{
+      width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--text);
+      font-size:14px; outline:none;
+    }
+    textarea{ min-height:110px; resize:vertical }
+
+    /* footer */
+    .footer{ text-align:center; color:var(--muted); margin-top:18px; font-size:13px }
+
+    /* reveal animations */
+    .reveal{ opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.9,.2,1); }
+    .reveal.visible{ opacity:1; transform: translateY(0) }
+
+    /* section glow when active */
+    .section.glow{ box-shadow: 0 12px 46px rgba(12,30,60,0.28); border-radius:12px; border:1px solid rgba(255,255,255,0.035) }
+
+    /* responsive */
+    @media (max-width:1100px){
+      .projects-grid{ grid-template-columns: 1fr; }
+      .page{ grid-template-columns: 1fr; padding:18px }
+      .hero-right{ order:-1; width:100% }
+    }
+    @media (max-width:720px){
+      .nav-links{ display:none }
+      .mobile-toggle{ display:flex }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <div class="nav-wrap" role="navigation" aria-label="Main Navigation">
+    <nav class="container" >
+      <a class="brand" href="#home" aria-label="Home - Mohammad Shoaib Malik" onclick="closeMobileMenu()">
+        <span class="logo" aria-hidden="true">
+          <!-- small initials logo -->
+          <strong style="font-size:14px">SM</strong>
+        </span>
+        <span style="display:inline-block">
+          Mohammad Shoaib <span style="opacity:.7; display:block; font-weight:600; font-size:12px">Portfolio</span>
+        </span>
+      </a>
+
+      <div style="display:flex; align-items:center; gap:10px">
+        <div class="nav-links" role="menubar" id="navLinks">
+          <a href="#home" data-target="home" class="nav-link">Home</a>
+          <a href="#about" data-target="about" class="nav-link">About</a>
+          <a href="#college" data-target="college" class="nav-link">College</a>
+          <a href="#projects" data-target="projects" class="nav-link">Projects</a>
+          <a href="#contact" data-target="contact" class="nav-link">Contact</a>
+        </div>
+
+        <button class="mobile-toggle" id="mobileBtn" aria-label="Open menu" title="Open menu">☰</button>
+
+        <button id="themeToggle" class="mobile-toggle" aria-label="Toggle theme" title="Toggle theme">🌓</button>
+      </div>
+    </nav>
+
+    <!-- Mobile dropdown -->
+    <div id="mobileMenu" style="display:none; max-width:1100px; margin:0 auto; padding:12px 22px; border-top:1px solid rgba(255,255,255,0.02); background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent)">
+      <div style="display:flex; gap:10px; flex-direction:column">
+        <a href="#home" class="nav-link" onclick="closeMobileMenu()">Home</a>
+        <a href="#about" class="nav-link" onclick="closeMobileMenu()">About</a>
+        <a href="#college" class="nav-link" onclick="closeMobileMenu()">College</a>
+        <a href="#projects" class="nav-link" onclick="closeMobileMenu()">Projects</a>
+        <a href="#contact" class="nav-link" onclick="closeMobileMenu()">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE -->
+  <main class="page" id="home">
+    <!-- SIDEBAR -->
+    <aside class="card reveal">
+      <div class="photo" aria-hidden="true">
+        <img src="my.jpg" alt="Mohammad Shoaib Malik">
+      </div>
+
+      <h1>Mohammad Shoaib Malik</h1>
+      <div class="subtitle">BCA Final year (Batch 2026) • Aspiring Software Developer</div>
+
+      <div style="margin-top:12px">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Contact</div>
+        <div class="contact-list">
+          <div class="contact-item"><strong>Email:</strong>&nbsp;<a href="mailto:shoaibmalik0815@gmail.com">shoaibmalik0815@gmail.com</a></div>
+          <div class="contact-item"><strong>Phone:</strong>&nbsp;7293304786</div>
+          <div class="contact-item"><strong>Location:</strong>&nbsp;Hadapsar, Pune</div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Social</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap">
+          <a class="chip" href="https://www.linkedin.com/in/mohammad-shoaib-malik-5a1b93396/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="chip" href="https://instagram.com/m_a_l_i_k_1508" target="_blank" rel="noreferrer">Instagram</a>
+        </div>
+      </div>
+
+      <div style="margin-top:14px">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Skills</div>
+        <div class="skills" aria-hidden="true">
+          <span class="skill-pill">HTML</span>
+          <span class="skill-pill">CSS</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">SQL</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <section class="main" aria-labelledby="intro">
+      <div class="hero reveal" id="intro">
+        <div class="hero-left">
+          <div class="headline">Hi, I'm <span style="background:linear-gradient(90deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; color:transparent; font-weight:800">Mohammad Shoaib Malik</span></div>
+          <div class="subhead">BCA Final year student (Batch 2026) — aspiring Software Developer focused on web & full-stack development.</div>
+
+            <a class="btn ghost" href="#contact">Let's talk</a>
+            <a class="btn ghost" href="https://www.linkedin.com/in/mohammad-shoaib-malik-5a1b93396/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+
+        </div>
+
+        <div class="hero-right card-panel" aria-hidden="true" style="text-align:center">
+          <div style="font-weight:700; font-size:13px; margin-bottom:10px">Quick Info</div>
+          <div style="color:var(--muted); font-size:14px; margin-bottom:8px">Course</div>
+          <div style="font-weight:700; font-size:15px">BCA (Science) — 3rd Year</div>
+          <div style="margin-top:10px; color:var(--muted)">Abeda Inamdar Senior College</div>
+          <div style="margin-top:14px">
+            <a class="chip" href="#college">College Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="section reveal" id="about">
+        <h2>About Me</h2>
+        <div class="card-panel">
+          <p style="color:var(--muted); margin-bottom:8px">
+            BCA Final year student (Batch 2026) with a strong interest in software development. Passionate about coding, problem-solving, and creating impactful digital solutions. Focused on becoming a skilled Software Developer.
+          </p>
+
+          <div style="margin-top:12px">
+            <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Key Skills</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap">
+              <span class="skill-pill">HTML</span>
+              <span class="skill-pill">CSS</span>
+              <span class="skill-pill">JavaScript</span>
+              <span class="skill-pill">React (learning)</span>
+              <span class="skill-pill">Python</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLLEGE -->
+      <div class="section reveal" id="college">
+        <h2>College Details</h2>
+        <div class="college-box">
+          <strong>College:</strong> Abeda Inamdar Senior College of Arts, Science and Commerce<br>
+          <strong>University:</strong> Savitribai Phule Pune University<br>
+          <strong>Course:</strong> BCA (Science)<br>
+          <strong>Batch / Passing Year:</strong> 2026<br>
+          <strong>Current Year / Sem:</strong> 3rd Year<br>
+          <strong>Location:</strong> Camp, Pune
+        </div>
+      </div>
+
+      <!-- PROJECTS -->
+      <div class="section reveal" id="projects">
+        <h2>Projects</h2>
+        <div class="project-card">
+            <h3>Personal Portfolio Website</h3>
+            <p>Responsive personal portfolio built with HTML, CSS & JS. Includes dark/light mode, smooth animations, and section navigation.</p>
+            <div style="margin-top:10px"><a class="chip" href="#" title="Live link">Live</a></div>
+          </div>
+
+          <div class="project-card">
+            <h3>To-Do Web App</h3>
+            <p>Javascript CRUD To-Do with localStorage for persistence — demonstrates DOM manipulation and state handling.</p>
+            <div style="margin-top:10px"><a class="chip" href="#" title="GitHub">Repo</a></div>
+          </div>
+
+      <!-- CONTACT -->
+      <div class="section reveal" id="contact">
+        <h2>Contact</h2>
+        <div class="card-panel">
+          <p style="color:var(--muted);margin-bottom:12px">Open to internships and collaborative projects. Reach out via email or phone.</p>
+
+          <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center">
+            <a class="btn" href="mailto:shoaibmalik0815@gmail.com">Email Me</a>
+            <a class="btn ghost" href="tel:+917293304786">Call: 7293304786</a>
+            <a class="btn ghost" href="/resume.pdf" download="Mohammad_Shoaib_Malik_Resume.pdf">Download Resume</a>
+          </div>
+
+          <div style="margin-top:12px; color:var(--muted)"><strong>Address:</strong> Hadapsar, Pune</div>
+        </div>
+      </div>
+
+      <div class="footer">Built with ❤️ • Malik Editz</div>
+    </section>
+  </main>
+
+  <!-- JS: theme, reveal, nav active, mobile menu, section glow -->
+  <script>
+    // Theme toggle with localStorage
+    (function(){
+      const root = document.documentElement;
+      const themeToggle = document.getElementById('themeToggle');
+      const saved = localStorage.getItem('portfolio-theme');
+      if(saved) root.setAttribute('data-theme', saved);
+      else {
+        // default: dark
+        root.setAttribute('data-theme', 'dark');
+      }
+      function toggleTheme(){
+        const cur = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        const next = cur === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('portfolio-theme', next);
+      }
+      themeToggle.addEventListener('click', toggleTheme);
+    })();
+
+    // Simple mobile menu toggle
+    const mobileBtn = document.getElementById('mobileBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    function closeMobileMenu(){ mobileMenu.style.display = 'none'; }
+    mobileBtn && mobileBtn.addEventListener('click', ()=>{
+      mobileMenu.style.display = mobileMenu.style.display === 'none' || mobileMenu.style.display === '' ? 'block' : 'none';
+    });
+
+    // Reveal animations & section glow using IntersectionObserver
+    const reveals = document.querySelectorAll('.reveal');
+    const sections = document.querySelectorAll('.section');
+
+    const revealObs = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.12});
+
+    reveals.forEach(el => revealObs.observe(el));
+
+    // Section glow + active nav link
+    const sectionObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        const id = entry.target.id;
+        const navLink = document.querySelector('.nav-links a[data-target="'+id+'"]');
+        if(entry.isIntersecting){
+          entry.target.classList.add('glow');
+          // set active link
+          document.querySelectorAll('.nav-links .nav-link').forEach(a => a.classList.remove('active'));
+          if(navLink) navLink.classList.add('active');
+        } else {
+          entry.target.classList.remove('glow');
+          if(navLink) navLink.classList.remove('active');
+        }
+      });
+    }, {threshold: 0.38});
+
+    // Observe main sections for glow and nav
+    const observeIds = ['home','about','college','projects','contact'];
+    observeIds.forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) sectionObserver.observe(el);
+    });
+
+    // Smoothly update nav links on click (also close mobile menu)
+    document.querySelectorAll('.nav-link').forEach(a=>{
+      a.addEventListener('click', function(e){
+        // auto close mobile
+        closeMobileMenu();
+        // highlight current (handled by observer too)
+      });
+    });
+
+    // Fallback: if resume link is placeholder, show a small toast on click
+    document.querySelectorAll('a[download]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        if(a.getAttribute('href') === '/resume.pdf'){
+          // let the browser attempt download; also show tiny toast
+          showToast('Replace /resume.pdf with your actual resume path to enable direct download.');
+        }
+      });
+    });
+
+    // Tiny toast util
+    function showToast(msg){
+      if(document.getElementById('toast')) return;
+      const t = document.createElement('div');
+      t.id = 'toast';
+      t.textContent = msg;
+      Object.assign(t.style, {
+        position: 'fixed', bottom: '22px', left: '50%', transform: 'translateX(-50%)',
+        background: 'rgba(0,0,0,0.6)', color: '#fff', padding: '10px 14px', borderRadius: '10px',
+        fontSize:'13px', zIndex:9999, boxShadow: '0 8px 30px rgba(0,0,0,0.6)'
+      });
+      document.body.appendChild(t);
+      setTimeout(()=> t.style.opacity = '0.03', 3500);
+      setTimeout(()=> t.remove(), 4200);
+    }
+
+    // On load: mark home visible quickly
+    window.addEventListener('load', ()=>{
+      const home = document.getElementById('home');
+      if(home) home.classList.add('visible');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPN Landing Page</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            color: #0c2540;
+            background: #ffffff;
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            width: 150px;
+        }
+
+        nav a {
+            font-size: 14px;
+            text-decoration: none;
+            color: #0c2540;
+            margin-left: 15px;
+        }
+
+        .hero {
+            background: url('VPN2.jpeg') center/cover no-repeat;
+            height: 450px;
+            text-align: center;
+            padding-top: 120px;
+            color: rgb(9, 24, 1);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #008060;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        .section {
+            padding: 60px 80px;
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 80px;
+        }
+
+        .flex img {
+            width: 350px;
+        }
+
+        .text-box {
+            width: 50%;
+        }
+
+        .text-box h2 {
+            font-size: 32px;
+        }
+
+        .center-features {
+            display: flex;
+            justify-content: space-between;
+            padding: 40px 0;
+        }
+
+        .center-features div {
+            width: 30%;
+            text-align: center;
+        }
+
+        .light-section {
+            background: #fdeff1;
+            padding: 60px 80px;
+            text-align: center;
+        }
+
+        .worldmap {
+            width: 70%;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 20px;
+        }
+
+        .stats div {
+            font-size: 22px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 20px;
+            color: gray;
+        }
+
+        @media(max-width: 900px){
+            .flex {
+                flex-direction: column;
+                text-align: center;
+            }
+            .text-box {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+            .flex img {
+                width: 80%;
+            }
+            .center-features {
+                flex-direction: column;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="logo-.png" alt="logo">
+        <nav>
+            <a href="#">English ▼</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>The VPN that just works</h1>
+        <p>Go further with the #1 trusted leader in VPN</p>
+        <a href="#" class="btn">Get VPN</a>
+        <p style="font-size: 12px; margin-top: 10px;">30-day money-back guarantee</p>
+    </section>
+
+    <section class="section">
+        <div class="flex">
+            <img src="task1.avif">
+            <div class="text-box">
+                <h2>Secure access, worldwide</h2>
+                <p>
+                    Connect reliably from anywhere, to anywhere. Our high-speed servers
+                    across 94 countries put you in control.
+                </p>
+                <a href="#" class="btn">Get VPN</a>
+            </div>
+        </div>
+
+        <div class="flex">
+            <div class="text-box">
+                <h2>One click to a safer internet</h2>
+                <p>
+                    Browsing online shouldn’t mean exposing your identity. Keep your information 
+                    private and secure—whether you’re shopping, working, or simply browsing.
+                </p>
+            </div>
+            <img src="task1..avif">
+        </div>
+
+        <div class="flex">
+            <img src="task-1.jpg">
+            <div class="text-box">
+                <h2>Use VPN on every device</h2>
+                <p>
+                    Phone, tablet, computer, router—no matter where you are or what you use, 
+                    one VPN subscription has you covered.
+                </p>
+                <a href="#" class="btn">Get VPN</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="center-features">
+            <div>
+                <img src="img1.jpeg" width="120">
+                <h3>Stronger data protection</h3>
+                <p>Take control of your online security with powerful encryption.</p>
+            </div>
+            <div>
+                <img src="img2.jpeg" width="120">
+                <h3>Works everywhere</h3>
+                <p>Enjoy the internet the way it’s meant to be—fast and free.</p>
+            </div>
+            <div>
+                <img src="img3.jpeg" width="120">
+                <h3>Lightning-fast connectivity</h3>
+                <p>Experience high-speed servers powered by next-gen tech.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="light-section">
+        <h2>Ultra-fast servers around the globe</h2>
+        <img src="world.jpeg" class="worldmap">
+
+        <div class="stats">
+            <div><strong>160</strong><br>locations</div>
+            <div><strong>94</strong><br>countries</div>
+            <div><strong>∞</strong><br>unlimited bandwidth</div>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 VPN Landing Page. All rights reserved.
+        created by Malik
+    </footer>
+
+</body>
+</html>
